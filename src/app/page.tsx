@@ -16,7 +16,6 @@ interface Activity {
 export default function Home() {
   const [activities, setActivities] = useState<Activity[]>([]);
 
-  // Load stored data
   useEffect(() => {
     const stored = localStorage.getItem("activities");
     if (stored) {
@@ -28,7 +27,7 @@ export default function Home() {
     }
   }, []);
 
-  // Save to localStorage when updated
+  // save to localStorage when updated
   useEffect(() => {
     localStorage.setItem("activities", JSON.stringify(activities));
   }, [activities]);

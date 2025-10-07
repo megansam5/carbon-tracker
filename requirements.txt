@@ -1,4 +1,0 @@
-tailwindcss
-recharts
-lucide-recharts
-framer-motion

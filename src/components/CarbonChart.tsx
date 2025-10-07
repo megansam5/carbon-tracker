@@ -16,8 +16,7 @@ interface Activity {
   amount: number;
 }
 
-// Wide color palette
-const COLORS = [
+const slice_colours = [
   "#2b83ba",
   "#abdda4",
   "#fdae61",
@@ -31,7 +30,6 @@ const COLORS = [
 ];
 
 export default function CarbonChart({ data }: { data: Activity[] }) {
-  // Aggregate emissions by activity
   const aggregated: Record<string, { emissions: number; category: string }> =
     {};
   data.forEach((item) => {
@@ -49,13 +47,12 @@ export default function CarbonChart({ data }: { data: Activity[] }) {
     name: activities[key].label,
     emissions: Number(value.emissions.toFixed(2)),
     category: value.category,
-    color: COLORS[index % COLORS.length],
+    color: slice_colours[index % slice_colours.length],
   }));
 
-  // Custom label function: skip labels for slices <3%, position outside
   const renderLabel = (entry: any) => {
     const percent = entry.percent * 100;
-    if (percent < 3) return null; // skip tiny slices
+    if (percent < 3) return null;
     return `${entry.name} (${percent.toFixed(0)}%)`;
   };
 
@@ -75,20 +72,18 @@ export default function CarbonChart({ data }: { data: Activity[] }) {
 
   return (
     <div className="flex justify-center">
-      {" "}
-      {/* center the whole chart */}
       <div className="bg-white p-4 rounded-2xl shadow-md">
-        <h2 className="text-lg font-semibold mb-2 text-green-700 text-center">
+        <h2 className="text-lg font-semibold mb-1 text-green-700 text-center">
           Emissions by Activity
         </h2>
-        <div style={{ width: "800px", height: "400px" }}>
+        <div style={{ width: "800px", height: "300px" }}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={chartData}
                 dataKey="emissions"
                 nameKey="name"
-                outerRadius={120} // larger radius for labels
+                outerRadius={120}
                 label={renderLabel}
                 labelLine={{ stroke: "#ccc", strokeWidth: 1 }}
               >
