@@ -7,10 +7,6 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ---
 
-## Requirements
-
-Install dependencies listed in `requirements.txt`:
-
 ### Prerequisites
 
 Before you start, make sure you have Node.js installed on your machine: (https://nodejs.org/en/download/)
